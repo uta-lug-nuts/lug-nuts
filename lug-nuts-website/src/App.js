@@ -53,7 +53,7 @@ function App() {
       description: 'Jeremiah is passionate about Linux and open-source software. He oversees club operations and organizes workshops.',
     },
     {
-      name: 'Betim Hozda',
+      name: 'Betim Hodza',
       role: 'Co-President',
       photo: BetimPhoto,
       description: 'Betim specializes in system administration and cybersecurity. He oversees club operations and organizes workshops.',
