@@ -6,14 +6,17 @@ import Videos from './Videos';
 import Resources from './Resources';
 import TerminalCommands from './TerminalCommands';
 import Donut from './Donut';
-import { gsap } from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import JeremiahPhoto from './assets/images/Jeremiah.png';
 import BetimPhoto from './assets/images/Betim.jpg';
 import BrettPhoto from './assets/images/Brett.png';
 
-gsap.registerPlugin(ScrollTrigger);
+// Removed gsap imports
+// import { gsap } from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Removed gsap registration
+// gsap.registerPlugin(ScrollTrigger);
 
 function useScrollToTopOrSection() {
   const location = useLocation();
@@ -75,38 +78,7 @@ function App() {
   const randomTip = tips[Math.floor(Math.random() * tips.length)];
 
   useEffect(() => {
-    // Apply animations after the component is mounted and fully rendered
-    const timeout = setTimeout(() => {
-      gsap.utils.toArray('.section').forEach((section) => {
-        gsap.fromTo(
-          section,
-          {
-            opacity: 0,
-            y: -100,
-          },
-          {
-            opacity: 1,
-            y: 0,
-            scrollTrigger: {
-              trigger: section,
-              start: 'top 75%',
-              toggleActions: 'play none none none',
-            },
-            duration: 1,
-            ease: 'power2.out',
-          }
-        );
-      });
-
-      // Ensure Donut and "Tip of the Day" are visible on load
-      gsap.to(".donut-container, .information-box", {
-        opacity: 1, 
-        duration: 1,
-        ease: "power2.out"
-      });
-    }, 500); // Delaying to make sure the page is fully loaded
-
-    return () => clearTimeout(timeout); // Clean up on unmount
+    // Removed all GSAP animation logic
   }, []);
 
   return (
@@ -115,19 +87,25 @@ function App() {
       <div className="bg-gruvboxBg text-gruvboxFg min-h-screen">
         {/* Navigation */}
         <nav className="fixed w-full bg-gruvboxBg text-gruvboxFg p-4 shadow-lg z-50">
-          <ul className="flex justify-center space-x-8">
-            <li>
+          <ul className="flex justify-between sm:justify-center flex-wrap space-x-8">
+            <li className="flex-grow sm:flex-grow-0">
               <Link to="/?section=home" className="cursor-pointer">Home</Link>
             </li>
-            <li>
+            <li className="flex-grow sm:flex-grow-0">
               <Link to="/?section=whatwedo" className="cursor-pointer">What We Do</Link>
             </li>
-            <li>
+            <li className="flex-grow sm:flex-grow-0">
               <Link to="/?section=officers" className="cursor-pointer">Officers</Link>
             </li>
-            <li><Link to="/terminal-commands" className="cursor-pointer">Terminal Commands</Link></li>
-            <li><Link to="/videos" className="cursor-pointer">Videos</Link></li>
-            <li><Link to="/resources" className="cursor-pointer">Resources</Link></li>
+            <li className="flex-grow sm:flex-grow-0">
+              <Link to="/terminal-commands" className="cursor-pointer">Terminal Commands</Link>
+            </li>
+            <li className="flex-grow sm:flex-grow-0">
+              <Link to="/videos" className="cursor-pointer">Videos</Link>
+            </li>
+            <li className="flex-grow sm:flex-grow-0">
+              <Link to="/resources" className="cursor-pointer">Resources</Link>
+            </li>
           </ul>
         </nav>
 
@@ -176,9 +154,9 @@ function Home({ officers, randomTip }) {
   return (
     <>
       {/* Homepage Section */}
-      <div id="home" className="section min-h-screen flex flex-col items-center justify-center relative">
+      <div id="home" className="section min-h-screen flex flex-col items-center justify-center relative px-4">
         <div className="text-center mb-6">
-          <div className="header-art text-gruvboxGreen text-center mb-6 z-50"> {/* Header with z-50 */}
+          <div className="header-art text-gruvboxGreen text-center mb-6 z-50">
             {`
     ______   ________  ________       _______  ________  ________  ________ 
   //      \\ /    /   \\/        \\    //   /   \\/    /   \\/        \\/        \\
@@ -187,7 +165,7 @@ function Home({ officers, randomTip }) {
 \\________/\\________/\\________/    \\__/_____/\\________/ \\______/ \\________/  
             `}
           </div>
-          <h1 className="text-4xl font-bold text-gruvboxYellow mb-4 z-50">LUG Nuts</h1> {/* Ensure z-50 */}
+          <h1 className="text-4xl font-bold text-gruvboxYellow mb-4 z-50">LUG Nuts</h1>
           <p className="text-xl z-50">Welcome to the official Linux User Group of UTA. Dive into Linux, open-source, and cybersecurity with us!</p>
           <p className="text-xl text-gruvboxOrange mt-4 mb-4 z-50">
             LUG Nuts is the official Linux User Group at The University of Texas at Arlington, fostering a community of students interested in Linux,
@@ -204,24 +182,11 @@ sudo apt-get install knowledge
             </pre>
           </div>
         </div>
-
-        {/* Donut positioned below header */}
-        <div className="absolute bottom-[-150px] left-20 z-40">
-          <div className="donut-container">
-            <Donut />
-          </div>
-        </div>
-
-        {/* Informational Text Box */}
-        <div className="information-box absolute right-20 bottom-[-150px] z-40">
-          <h3 className="text-2xl font-bold mb-2">Tip of the Day</h3>
-          <p>{randomTip}</p>
-        </div>
       </div>
 
       {/* Terminal Simulation Section */}
       <div className="section flex items-center justify-center bg-gruvboxBg text-gruvboxFg px-8 py-8 relative z-20">
-        <div className="terminal bg-gruvboxFg text-gruvboxBg p-6 rounded w-full max-w-md absolute top-[-100px] right-[200px] -translate-x-1/2 z-20">
+        <div className="terminal bg-gruvboxFg text-gruvboxBg p-6 rounded w-full max-w-md">
           <div className="terminal-output">
             {terminalOutput.map((output, index) => (
               <div key={index} className="mb-2 text-gruvboxYellow">{output}</div>
@@ -241,7 +206,7 @@ sudo apt-get install knowledge
       </div>
 
       {/* Events & Workshops Section */}
-      <div id="whatwedo" className="section min-h-screen flex items-center justify-center bg-gruvboxGreen text-gruvboxFg px-8 py-16 relative z-10">
+      <div id="whatwedo" className="section min-h-screen flex items-center justify-center bg-gruvboxGreen text-gruvboxFg px-4 sm:px-8 py-16 relative z-10">
         <div className="text-center z-10">
           <h2 className="text-3xl font-bold mb-8">Events & Workshops</h2>
           <p className="text-xl mb-6">
@@ -267,22 +232,38 @@ echo "Restarting the Apache server..."
       </div>
 
       {/* Officers Section */}
-      <div id="officers" className="section min-h-screen flex flex-col items-center justify-center bg-gruvboxRed z-10">
-        <div className="text-center text-gruvboxFg max-w-4xl px-6">
+      <div id="officers" className="section min-h-screen flex flex-col items-center justify-center bg-gruvboxRed z-10 px-4 sm:px-8 py-16">
+        <div className="text-center text-gruvboxFg max-w-4xl">
           <h2 className="text-4xl font-bold mb-6">Meet the Officers</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+          <div className="officer-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {officers.map((officer, index) => (
               <div key={index} className="mt-10 flex flex-col items-center text-center">
                 <img
                   src={officer.photo}
                   alt={officer.name}
-                  className="rounded-full w-32 h-32 object-cover mb-4 shadow-lg"
+                  className="rounded-full w-24 h-24 sm:w-32 sm:h-32 object-cover mb-4 shadow-lg"
                 />
                 <h3 className="text-2xl font-bold">{officer.name}</h3>
                 <p className="text-gruvboxYellow">{officer.role}</p>
                 <p className="text-sm">{officer.description}</p>
               </div>
             ))}
+          </div>
+        </div>
+      </div>
+
+      {/* Floating Donut and Tips */}
+      <div className="floating-elements absolute bottom-[-150px] left-0 right-0 z-40">
+        <div className="flex justify-between items-center">
+          {/* Donut positioned outside 'home' */}
+          <div className="donut-container relative ml-8 text-xs"> {/* Made text smaller here */}
+            <Donut />
+          </div>
+
+          {/* Informational Text Box */}
+          <div className="information-box mr-8 text-sm"> {/* Made the tip text smaller here */}
+            <h3 className="text-xl font-bold mb-2">Tip of the Day</h3>
+            <p className="text-base">{randomTip}</p>
           </div>
         </div>
       </div>

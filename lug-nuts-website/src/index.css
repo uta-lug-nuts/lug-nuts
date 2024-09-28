@@ -30,6 +30,7 @@ pre {
   padding: 3rem 1rem;
 }
 
+/* Removed scroll snap behavior */
 .terminal {
   margin-left: 8rem; /* Adjusted to align horizontally */
   margin-top: -5rem; /* Bringing it up closer vertically */
@@ -37,34 +38,12 @@ pre {
   position: relative;
 }
 
-.absolute {
-  position: absolute;
-}
-
-.bottom-20 {
-  bottom: 5rem;
-}
-
-.left-20 {
-  left: 5rem;
-}
-
-h2 {
-  font-size: 1.5rem;
-  text-align: left;
-}
-
-.terminal-input {
-  margin-top: 1rem;
-}
-
 html, body {
-  scroll-snap-type: y mandatory;
+  /* Removed scroll-snap-type */
 }
 
 .section {
-  scroll-snap-align: start;
-  padding: 3rem 1rem;
+  /* Removed scroll-snap-align */
 }
 
 .btn {
