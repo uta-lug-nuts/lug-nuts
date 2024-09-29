@@ -10,7 +10,7 @@ import Donut from './Donut';
 import JeremiahPhoto from './assets/images/Jeremiah.png';
 import BetimPhoto from './assets/images/Betim.jpg';
 import BrettPhoto from './assets/images/Brett.png';
-import RosePhoto from './assets/images/Rose.png';
+import RosePhoto from './assets/images/Rose.jpg';
 
 // Removed gsap imports
 // import { gsap } from 'gsap';
