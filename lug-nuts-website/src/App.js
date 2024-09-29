@@ -10,6 +10,7 @@ import Donut from './Donut';
 import JeremiahPhoto from './assets/images/Jeremiah.png';
 import BetimPhoto from './assets/images/Betim.jpg';
 import BrettPhoto from './assets/images/Brett.png';
+import RosePhoto from './assets/images/Rose.png';
 
 // Removed gsap imports
 // import { gsap } from 'gsap';
@@ -63,6 +64,12 @@ function App() {
       role: 'Event Coordinator',
       photo: BrettPhoto,
       description: 'Brett specializes in social engineering and cybersecurity. She helps with event planning and technical sessions.',
+    },
+    {
+      name: 'Rose Ramirez',
+      role: 'Event Coordinator',
+      photo: RosePhoto,
+      description: 'Rose specializes in social engineering and cybersecurity. She helps with event planning and technical sessions.',
     },
   ]);
 
